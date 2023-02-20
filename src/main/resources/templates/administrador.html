@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="@{/css/estilosAdmin.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+<!--recorrer lista de usuarios-->
+  <div class="table-wrapper">
+    <div class="table-title">
+      <div class="row">
+        <div class="col-sm-6">
+          <h2>Panel de <b>Administrador</b></h2>
+        </div>
+        <div class="col-sm-6">
+          <a th:href="@{/admin/usuario/nuevousuario}" class="btn btn-success" data-toggle="modal"><i class="fa-solid fa-plus"></i> <span>Añadir Nuevo Usuario</span></a>
+        </div>
+      </div>
+    </div>
+    <table class="table table-striped table-hover">
+      <thead>
+      <tr>
+        <th>
+          <span class="custom-checkbox"></span>
+        </th>
+        <th>NIF</th>
+        <th>NOMBRE</th>
+        <th>APELLIDOS</th>
+        <th>TAREAS</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <th:block th:each="usario : ${listaUsuarios}">
+      <tbody>
+      <tr>
+        <td>
+          <span class="custom-checkbox">
+            <input type="checkbox" id="checkbox1" name="options[]" value="1">
+            <label for="checkbox1"></label>
+          </span>
+        </td>
+        <td th:text="${usario.getNif()}"></td>
+        <td th:text="${usario.getNombre()}"></td>
+        <td th:text="${usario.getApellidos()}"></td>
+        <td>
+          <th:block th:each="tarea : ${usario.getTareas()}">
+            <ul>
+              <li th:text="${tarea.getNombre()}"></li>
+            </ul>
+          </th:block>
+        </td>
+        <td>
+          <form th:action="@{/admin/usuario/editar}" method="get">
+            <button type="submit"  name="nif" th:value="${usario.getNif()}">Editar</button>
+          </form>
+        </td>
+        <td>
+          <form th:action="@{/admin/usuario/borrarUsuario}" method="get">
+            <button type="submit"  name="nif" th:value="${usario.getNif()}">Eliminar</button>
+          </form>
+        </td>
+        <td>
+          <form th:action="@{/guardarTarea}" method="get">
+            <button type="submit"  name="nif" th:value="${usario.getNif()}">Añadir Tarea</button>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+      </th:block>
+    </table>
+  </div>
+<p> <a th:href="@{/admin/dashboard}">Consultar análisis cuantitativo</a></p>
+</body>
+
+</html>

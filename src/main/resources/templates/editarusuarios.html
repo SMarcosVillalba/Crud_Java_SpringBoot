@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<link rel="stylesheet" th:href="@{/css/estilo.css}"/>-->
+
+<body>
+
+<h1>Edicion del usuario con nif: </h1>
+
+<span th:text="${usuario.getNif()}"></span>
+
+<form th:action="@{/actualizar}" th:object="${usuario}" method="post">
+    <fieldset><legend>Edicion de los datos del usuario: </legend>
+        <table>
+            <tr>
+                <td><label>NIF: </label></td>
+                <td><input type="text" readonly th:field="*{nif}" /></td>
+            </tr>
+            <tr>
+                <td><label>Nombre: </label></td>
+                <td><input type="text" th:field="*{nombre}" /></td>
+            </tr>
+            <tr>
+                <td><label>Apellidos: </label></td>
+                <td><input type="text" th:field="*{apellidos}" /></td>
+            </tr>
+            <tr>
+                <td><label>Activo (1== Activo,0=inactivo): </label></td>
+                <td><input min="0" max="1" type="number" th:field="*{activo}" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">Guardar nuevo usuario</button>
+                </td>
+            </tr>
+
+            <input type="hidden"   th:field="*{pw}" />
+
+        </table>
+    </fieldset>
+</form>
+
+
+</body>
+</html>

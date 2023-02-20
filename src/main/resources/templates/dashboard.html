@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<body>
+
+<h1>Estamos en dashboard html</h1>
+
+<span>Actualmente hay <b th:text="${numUsuarios}"></b> usuarios registrados.</span><br>
+<span>Actualmente hay <b th:text="${numTareas}"></b> tareas registradas</span><br>
+<span>Actualmente hay <b th:text="${numTareasCompletadas}"></b> tareas completadas</span><br>
+<span>Actualmente hay <b th:text="${numTareaspendientes}"></b> tareas pendientes</span><br>
+<span>El promedio de tareas es<b th:text="${promedioTareas}"></b></span>
+
+</body>
+</html>

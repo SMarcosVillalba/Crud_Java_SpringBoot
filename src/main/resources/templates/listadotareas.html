@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<link rel="stylesheet" th:href="@{/css/estilo.css}"/>-->
+
+<body>
+
+<h1>Estamos en listadotareas</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>NOMBRE</th>
+        <th>DESCRIPCION</th>
+        <th>ESTADO</th>
+    </tr>
+    </thead>
+    <th:block th:each="pepo : ${listaTareas}">
+        <tbody>
+        <tr>
+            <td th:text="${pepo.getId()}"></td>
+            <td th:text="${pepo.getNombre()}"></td>
+            <td th:text="${pepo.getDescripcion()}"></td>
+            <td th:text="${pepo.getEstado()}"></td>
+        </tr>
+        </tbody>
+
+    </th:block>
+</table>
+
+</body>
+</html>
